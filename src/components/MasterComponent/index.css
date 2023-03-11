@@ -1,0 +1,59 @@
+.input-value {
+  width: 40px;
+  margin: 10px;
+}
+.master-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.forms-container {
+  display: flex;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+  width: 40%;
+  border-radius: 10px;
+  height: fit-content;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.Questions-container {
+  background-color: #ffffff;
+  margin: 40px;
+  width: 40%;
+  border-radius: 10px;
+  padding: 20px;
+  height: 400px;
+  overflow: scroll;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.button {
+  background-color: #4f46e5;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 30px;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+.question-container {
+  list-style-type: upper-alpha;
+}
+.answer-container {
+  background-color: #ffffff;
+  margin: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.no-tests {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+}

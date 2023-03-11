@@ -1,0 +1,8 @@
+.question-item {
+  display: flex;
+  justify-content: flex-start;
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+}
