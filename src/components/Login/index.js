@@ -1,7 +1,6 @@
 import {useState} from 'react'
 import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
-
 import './index.css'
 
 const Login = props => {
