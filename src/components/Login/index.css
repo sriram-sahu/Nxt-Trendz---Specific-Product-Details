@@ -21,6 +21,13 @@
   font-size: 30px;
   color: #4f46e5;
 }
+.texts-item {
+  font-family: Roboto;
+  font-size: 50px;
+  color: #4f46e5;
+  display: flex;
+  justify-content: center;
+}
 @media screen and (min-width: 992px) {
   .form-container {
     width: 450px;
@@ -128,4 +135,11 @@
 }
 .active-button {
   background-color: #4f46e5;
+}
+.text {
+  margin-bottom: 0px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 16px;
 }

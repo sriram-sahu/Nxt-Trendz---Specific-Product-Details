@@ -9,7 +9,7 @@ const EachQuestion = props => {
   }
   return (
     <li className="question-item">
-      <h1>{question}</h1>
+      <h1>⚫ {question}?</h1>
       <button className="delete-button" type="button" onClick={onDeleteItem}>
         <img
           src="https://assets.ccbp.in/frontend/react-js/delete-img.png"

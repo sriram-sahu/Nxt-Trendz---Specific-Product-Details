@@ -29,12 +29,12 @@ const SignUp = props => {
     event.preventDefault()
     const {history} = props
     const userDetails = [username, password]
-    if (username === '') {
-      setErrorMsg('Enter Username')
+    if (user === '') {
+      setErrorMsg('Select User')
     } else if (password === '') {
       setErrorMsg('Enter Password')
-    } else if (user === '') {
-      setErrorMsg('Select User')
+    } else if (username === '') {
+      setErrorMsg('Enter Username')
     } else {
       const action = window.confirm('Account Created You can login Now')
       Cookies.set('user_details', userDetails, {
@@ -57,7 +57,8 @@ const SignUp = props => {
           alt="website logo"
         />
         <div>
-          <h1 className="texts">SignUp as</h1>
+          <h1 className="texts-item">SignUp</h1>
+          <h1 className="text">Choose User</h1>
           <div className="images-container">
             <button
               type="button"

@@ -9,6 +9,7 @@ const StudentComponent = () => {
   const [answer, setAnswer] = useState('')
   const [buttonText, setButtonText] = useState('Next')
   const [index, setIndex] = useState(0)
+  const [submittedText, setSubmittedText] = useState('')
 
   const onChangeUsername = event => {
     setUsername(event.target.value)
@@ -20,14 +21,16 @@ const StudentComponent = () => {
   }
 
   const onCLickNext = () => {
+    setAnswerList(preState => [...preState, answer])
+    console.log(questionList)
     if (index < questionList.length - 1) {
-      setAnswerList(preState => [...preState, answer])
       const oneQuestion = questionList[index]
       questionList[index].studentAnswer = answer
       console.log(questionList)
       setIndex(preState => preState + 1)
     } else {
       setButtonText('Submit')
+      questionList[index].studentAnswer = answer
       setIndex(preState => preState)
     }
 
@@ -38,6 +41,8 @@ const StudentComponent = () => {
       }
       const answerDetails = JSON.stringify(ansDetails)
       localStorage.setItem('answersList', answerDetails)
+      setQuestionList('')
+      setSubmittedText('You Completed The Test')
       localStorage.setItem('questionList', JSON.stringify(questionList))
     }
     console.log(answerList)
@@ -52,8 +57,13 @@ const StudentComponent = () => {
 
     return (
       <div>
-        <h1>{`${index + 1}) ${questionItem.slice(1)}? `}</h1>
-        <input type="number" className="input" onChange={onChangeAnswer} />
+        <h1>{`${index + 1}) ${questionItem}? `}</h1>
+        <input
+          type="number"
+          className="input"
+          onChange={onChangeAnswer}
+          placeholder="Enter Your Answer"
+        />
         <br />
         <button type="button" className="button" onClick={onCLickNext}>
           {buttonText}
@@ -82,6 +92,9 @@ const StudentComponent = () => {
           Start Test
         </button>
         {questionList.length !== 0 && <div>{displayQuestions()}</div>}
+        {submittedText.length !== 0 && (
+          <h1 className="texts">{submittedText}</h1>
+        )}
       </div>
     </div>
   )

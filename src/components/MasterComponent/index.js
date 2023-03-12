@@ -40,16 +40,18 @@ const MasterComponent = () => {
     setSecondNum(Math.floor(event.target.value))
   const onClickSecondNum = () => setSecondNum('')
   const onChangeOperator = event => setOperator(event.target.value)
+
   const createQuestions = () => {
     const result = findAnswer(firstNum, operator, secondNum)
     const myQuestion = {
       id: uuid(),
-      question: `⚫ ${firstNum} ${operator} ${secondNum}? `,
+      question: `${firstNum} ${operator} ${secondNum} `,
       answer: result,
       studentAnswer: '',
     }
 
     setQuestionsList(prevState => [...prevState, myQuestion])
+    setTask('')
   }
 
   const onDeleteItem = id => {
@@ -145,9 +147,7 @@ const MasterComponent = () => {
               <ul>
                 {questions.map(eachItem => (
                   <li>
-                    <h1 className="question">{`Question : ${eachItem.question.slice(
-                      1,
-                    )} `}</h1>
+                    <h1 className="question">{`Question : ${eachItem.question}? `}</h1>
                     <p>{`Answer : ${eachItem.answer} `}</p>
                     {eachItem.studentAnswer === '' ? (
                       <p>Students Answer : Not Answered Yet</p>

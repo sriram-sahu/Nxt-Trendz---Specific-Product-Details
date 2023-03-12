@@ -24,9 +24,7 @@ const Login = props => {
   const loginAaMaster = () => {
     const {history} = props
     const masterDetails = JSON.parse(localStorage.getItem('Master'))
-    if (user === '') {
-      setErrorMsg('Select User')
-    } else if (username === '') {
+    if (username === '') {
       setErrorMsg('Enter Username')
     } else if (masterDetails[0] === username && masterDetails[1] === password) {
       history.replace('/master')
@@ -36,8 +34,8 @@ const Login = props => {
       setErrorMsg('Enter Password')
     } else if (masterDetails[1] !== password) {
       setErrorMsg('Invalid Password')
-    } else {
-      setErrorMsg('')
+    } else if (user === '') {
+      setErrorMsg('Select User')
     }
   }
   const loginAsStudent = () => {
@@ -51,13 +49,13 @@ const Login = props => {
       setErrorMsg('Enter Password')
     } else if (studentDetails[1] !== password) {
       setErrorMsg('Invalid Password')
+    } else if (user === '') {
+      setErrorMsg('Select User')
     } else if (
       studentDetails[0] === username &&
       studentDetails[1] === password
     ) {
       history.replace('/student')
-    } else {
-      setErrorMsg('')
     }
   }
   const activeMasterButton = user === 'Master' ? 'active-button' : ''
@@ -77,6 +75,9 @@ const Login = props => {
       Cookies.get(userDetails)
       console.log(userDetails)
     }
+    if (user === '') {
+      setErrorMsg('Select User')
+    }
 
     const {history} = props
     switch (user) {
@@ -84,8 +85,6 @@ const Login = props => {
         return loginAaMaster()
       case 'Student':
         return loginAsStudent()
-      case '':
-        return history.replace('/')
       default:
         return null
     }
@@ -100,7 +99,8 @@ const Login = props => {
           alt="website logo"
         />
         <div>
-          <h1 className="texts">Login as</h1>
+          <h1 className="texts-item">Login</h1>
+          <h1 className="text">Choose User</h1>
           <div className="images-container">
             <button
               type="button"
