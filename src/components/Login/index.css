@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #000000;
+  background-color: #5c5fe9;
   min-height: 100vh;
 }
 .form-container {
@@ -16,7 +16,11 @@
   max-width: 450px;
   background-color: #ffffff;
 }
-
+.texts {
+  font-family: Roboto;
+  font-size: 30px;
+  color: #4f46e5;
+}
 @media screen and (min-width: 992px) {
   .form-container {
     width: 450px;
@@ -89,11 +93,10 @@
 
 .error-message {
   align-self: start;
-  font-size: 12px;
+  font-size: 18px;
   margin-top: 3px;
   margin-bottom: 0px;
   font-family: 'Roboto';
-  font-size: 12px;
   line-height: 16px;
   color: #ff0b37;
 }

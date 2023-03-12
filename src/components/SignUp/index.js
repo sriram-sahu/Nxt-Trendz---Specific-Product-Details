@@ -31,18 +31,17 @@ const SignUp = props => {
     const userDetails = [username, password]
     if (username === '') {
       setErrorMsg('Enter Username')
-      alert('Enter UserName')
     } else if (password === '') {
       setErrorMsg('Enter Password')
-      alert('Enter Password')
     } else if (user === '') {
       setErrorMsg('Select User')
-      alert('Select User')
     } else {
       const action = window.confirm('Account Created You can login Now')
       Cookies.set('user_details', userDetails, {
         expires: 30,
       })
+      localStorage.setItem(user, JSON.stringify(userDetails))
+
       if (action) {
         history.replace('/login')
       }
@@ -58,7 +57,7 @@ const SignUp = props => {
           alt="website logo"
         />
         <div>
-          <h1>SignUp as</h1>
+          <h1 className="texts">SignUp as</h1>
           <div className="images-container">
             <button
               type="button"

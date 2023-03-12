@@ -3,7 +3,8 @@
   padding: 30px;
   display: flex;
   align-self: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: cover;
 }
 .nav-items {
   display: flex;

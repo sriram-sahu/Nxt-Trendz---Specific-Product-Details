@@ -22,31 +22,69 @@ const Login = props => {
     setUser('Student')
   }
 
+  const loginAaMaster = () => {
+    const {history} = props
+    const masterDetails = JSON.parse(localStorage.getItem('Master'))
+    if (user === '') {
+      setErrorMsg('Select User')
+    } else if (username === '') {
+      setErrorMsg('Enter Username')
+    } else if (masterDetails[0] === username && masterDetails[1] === password) {
+      history.replace('/master')
+    } else if (masterDetails[0] !== username) {
+      setErrorMsg('Invalid User')
+    } else if (password === '') {
+      setErrorMsg('Enter Password')
+    } else if (masterDetails[1] !== password) {
+      setErrorMsg('Invalid Password')
+    } else {
+      setErrorMsg('')
+    }
+  }
+  const loginAsStudent = () => {
+    const {history} = props
+    const studentDetails = JSON.parse(localStorage.getItem('Student'))
+    if (username === '') {
+      setErrorMsg('Enter Username')
+    } else if (studentDetails[0] !== username) {
+      setErrorMsg('Invalid User')
+    } else if (password === '') {
+      setErrorMsg('Enter Password')
+    } else if (studentDetails[1] !== password) {
+      setErrorMsg('Invalid Password')
+    } else if (
+      studentDetails[0] === username &&
+      studentDetails[1] === password
+    ) {
+      history.replace('/student')
+    } else {
+      setErrorMsg('')
+    }
+  }
   const activeMasterButton = user === 'Master' ? 'active-button' : ''
   const activeStudentButton = user === 'Student' ? 'active-button' : ''
 
   const submitForm = event => {
     event.preventDefault()
     const userDetails = [username, password]
+
     if (username === '') {
       setErrorMsg('Enter Username')
-      alert('Enter UserName')
     } else if (password === '') {
       setErrorMsg('Enter Password')
-      alert('Enter Password')
     } else if (user === '') {
       setErrorMsg('Select User')
-      alert('Select User')
     } else {
       Cookies.get(userDetails)
       console.log(userDetails)
     }
+
     const {history} = props
     switch (user) {
       case 'Master':
-        return history.replace('/master')
+        return loginAaMaster()
       case 'Student':
-        return history.replace('/student')
+        return loginAsStudent()
       case '':
         return history.replace('/')
       default:
@@ -63,7 +101,7 @@ const Login = props => {
           alt="website logo"
         />
         <div>
-          <h1>Login as</h1>
+          <h1 className="texts">Login as</h1>
           <div className="images-container">
             <button
               type="button"
@@ -104,7 +142,6 @@ const Login = props => {
             placeholder="Username"
           />
         </div>
-        {console.log(user)}
         <div className="input-container">
           <label className="input-label" htmlFor="password">
             PASSWORD
@@ -121,8 +158,9 @@ const Login = props => {
         <button type="submit" className="login-button">
           Login
         </button>
+        {errorMsg !== '' && <p className="error-message">*{errorMsg}</p>}
         <h1 className="login-text">
-          Do not have an Account?{' '}
+          Do not have an Account?
           <span className="span-text">
             <Link to="/signup"> SignUp</Link>
           </span>

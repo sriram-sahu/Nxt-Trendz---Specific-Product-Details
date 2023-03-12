@@ -21,14 +21,16 @@ const StudentComponent = () => {
 
   const onCLickNext = () => {
     if (index < questionList.length - 1) {
-      setIndex(preState => preState + 1)
       setAnswerList(preState => [...preState, answer])
       const oneQuestion = questionList[index]
       questionList[index].studentAnswer = answer
       console.log(questionList)
+      setIndex(preState => preState + 1)
     } else {
       setButtonText('Submit')
+      setIndex(preState => preState)
     }
+
     if (buttonText === 'Submit') {
       const ansDetails = {
         name: username,
@@ -50,7 +52,7 @@ const StudentComponent = () => {
 
     return (
       <div>
-        <h1>{`${index + 1}) ${questionItem}? `}</h1>
+        <h1>{`${index + 1}) ${questionItem.slice(1)}? `}</h1>
         <input type="number" className="input" onChange={onChangeAnswer} />
         <br />
         <button type="button" className="button" onClick={onCLickNext}>

@@ -57,3 +57,14 @@
   align-items: center;
   font-family: Roboto;
 }
+@media screen and (max-width: 992px) {
+  .forms-container {
+    width: 100%;
+  }
+  .answer-container {
+    width: 100%;
+  }
+  .Questions-container {
+    width: 100%;
+  }
+}

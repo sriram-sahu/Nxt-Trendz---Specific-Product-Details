@@ -13,18 +13,6 @@ const MasterComponent = () => {
   const [answerList, setAnswerList] = useState([])
   const [isTaskCreated, setTask] = useState(false)
 
-  const numberWords = [
-    {id: 0, value: 0, word: 'zero'},
-    {id: 1, value: 1, word: 'one'},
-    {id: 2, value: 2, word: 'two'},
-    {id: 3, value: 3, word: 'three'},
-    {id: 4, value: 4, word: 'four'},
-    {id: 5, value: 5, word: 'five'},
-    {id: 6, value: 6, word: 'six'},
-    {id: 7, value: 7, word: 'seven'},
-    {id: 8, value: 8, word: 'eight'},
-    {id: 9, value: 9, word: 'nine'},
-  ]
   const operators = [
     {id: 0, operator: '+', text: 'plus'},
     {id: 1, operator: '-', text: 'minus'},
@@ -47,14 +35,16 @@ const MasterComponent = () => {
   }
 
   const onChangeFirstNum = event => setFirstNum(Math.floor(event.target.value))
+  const onClickFirstNum = () => setFirstNum('')
   const onChangeSecondNum = event =>
     setSecondNum(Math.floor(event.target.value))
+  const onClickSecondNum = () => setSecondNum('')
   const onChangeOperator = event => setOperator(event.target.value)
   const createQuestions = () => {
     const result = findAnswer(firstNum, operator, secondNum)
     const myQuestion = {
       id: uuid(),
-      question: `${firstNum} ${operator} ${secondNum} `,
+      question: `⚫ ${firstNum} ${operator} ${secondNum}? `,
       answer: result,
       studentAnswer: '',
     }
@@ -86,16 +76,14 @@ const MasterComponent = () => {
       <div className="master-container">
         <div className="forms-container">
           <form>
-            <h1>Create your questions</h1>
-            <select
-              className="input-value"
+            <h1 className="texts">Create your questions</h1>
+            <input
+              type="number"
               value={firstNum}
               onChange={onChangeFirstNum}
-            >
-              {numberWords.map(eachItem => (
-                <option>{eachItem.value}</option>
-              ))}
-            </select>
+              placeholder="Enter First Number"
+              onClick={onClickFirstNum}
+            />
             <select
               className="input-value"
               value={operator}
@@ -105,15 +93,13 @@ const MasterComponent = () => {
                 <option>{eachItem.operator}</option>
               ))}
             </select>
-            <select
-              className="input-value"
+            <input
+              type="number"
               value={secondNum}
               onChange={onChangeSecondNum}
-            >
-              {numberWords.map(eachItem => (
-                <option>{eachItem.value}</option>
-              ))}
-            </select>
+              onClick={onClickSecondNum}
+              placeholder="Enter Second Number"
+            />
             <div className="button-container">
               <button
                 type="button"
@@ -131,12 +117,12 @@ const MasterComponent = () => {
         <div className="Questions-container">
           {questionsList.length === 0 ? (
             <div className="no-tests">
-              <h1>No Current Tests</h1>
+              <h1 className="texts">No Current Tests</h1>
             </div>
           ) : (
             <div>
-              <h1>Questions</h1>
-              <ol className="question-container">
+              <h1 className="texts">Questions</h1>
+              <ul>
                 {questionsList.map(eachItem => (
                   <EachQuestion
                     key={eachItem.id}
@@ -144,7 +130,8 @@ const MasterComponent = () => {
                     deleteItem={onDeleteItem}
                   />
                 ))}
-              </ol>
+              </ul>
+              {isTaskCreated && <h1 className="texts">Test Created</h1>}
               <button type="button" className="button" onClick={createTests}>
                 Create Tests
               </button>
@@ -154,11 +141,13 @@ const MasterComponent = () => {
         <div>
           {questions !== null && (
             <div className="answer-container">
-              <h1>Students Answers</h1>
+              <h1 className="texts">Students Answers</h1>
               <ul>
                 {questions.map(eachItem => (
                   <li>
-                    <h1>{`Question : ${eachItem.question}? `}</h1>
+                    <h1 className="question">{`Question : ${eachItem.question.slice(
+                      1,
+                    )} `}</h1>
                     <p>{`Answer : ${eachItem.answer} `}</p>
                     {eachItem.studentAnswer === '' ? (
                       <p>Students Answer : Not Answered Yet</p>
